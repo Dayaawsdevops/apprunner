@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appserver
+  labels:
+    app: appserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appserver
+  template:
+    metadata:
+      labels:
+        app: appserver
+    spec:
+      containers:
+        - name: appserver
+          image: <ecr_image_uri>
+          ports:
+            - containerPort: 5000
+          env:
+            - name: ENV
+              value: "dev"
+
